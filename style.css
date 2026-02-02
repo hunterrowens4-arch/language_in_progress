@@ -113,12 +113,29 @@ h3 {
   border-radius: 20px;
   box-shadow: 0 0 27px rgba(59,130,246,0.5);
   overflow: hidden;
-  width: 35%;
+  max-width: 35%;
 }
 
 .main-content {
   display: flex;
   justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+
+  header {
+    max-width: 90%;
+  }
+
+  h1 {
+    line-height: 1.5;
+    margin: 0 0 1.5em;
+  }
+
+  .logs-container {
+    max-width: 90%;
+  }
+
 }
 
 p, span {
