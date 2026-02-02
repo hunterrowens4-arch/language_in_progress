@@ -129,7 +129,11 @@ h3 {
 
   h1 {
     line-height: 1.5;
-    margin: 0 0 1.5em;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .log {
+    max-width: 90%;
   }
 
   .logs-container {
