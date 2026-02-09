@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link rel='stylesheet' type='text/css' href='style.css'
+<link rel='stylesheet' type='text/css' href='style.css'>
 
 </head>
 
@@ -25,22 +25,85 @@
 
       <h2>Newest Logs</h2>
 
-      <article class='log-card'>
+      <div class='filters'>
+        <span>Filter by language:</span>
+        <button class='active lang-all' data-lang='all'>All</button>
+        <button class='lang-gen' data-lang='gen'>General</button>
+        <button class='lang-spa' data-lang='spa'>Spanish</button>
+        <button class='lang-jap' data-lang='jap'>Japanese</button>
+        <button class='lang-rus' data-lang='rus'>Russian</button>
+      </div>
+
+      <article class='log-card' data-lang='gen'>
         <h3><a href='im_not_fluent.html'>I'm Not Fluent - I'm Just Logging What Clicks</a></h3>
         <time datetime='2026-01-29'>January 29, 2026</time>
+        <span class='lang-label lang-gen'>General</span>
         <p class='excerpt'>I didn't always like languages, and I'm definitely not fluent. This is the story of starting over, getting stuck, and figuring things out as I go.</p>
         <a href='im_not_fluent.html'><button class='read-log'>Read Full Log</button></a>
       </article>
-      <article class='log-card'>
+      <article class='log-card' data-lang='gen'>
         <h3><a href='from_chaos_to_cards.html'>From Chaos to Cards</a></h3>
         <time datetime='2026-02-09'>February 9, 2026</time>
-        <p> class='excerpt'>I wasn't understanding much of what I heard - so I started capturing it. This log is about turning scattered immersion into structured learning.</p>
+        <span class='lang-label lang-gen'>General</span>
+        <p class='excerpt'>I wasn't understanding much of what I heard - so I started capturing it. This log is about turning scattered immersion into structured learning.</p>
         <a href='from_chaos_to_cards.html'><button class='read-log'>Read Full Log</button></a>
       </article>
 
     </section>
 
   </div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let activeFilters = { lang: "all" };
+
+      const filterButtons = Array.from(document.querySelectorAll(".filters button"));
+      const cards = Array.from(document.querySelectorAll(".log-card"));
+
+      function applyFilters() {
+        const { lang } = activeFilters;
+        const showAll = !lang || lang === "all";
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardLang = (card.dataset.lang || "").toLowerCase();
+          const show = showAll || cardLang === lang;
+
+          card.classList.toggle("hidden", !show);
+          if (show) visibleCount++;
+        });
+
+        // Update aria-pressed for accessibility
+        filterButtons.forEach(btn => {
+          const pressed = btn.dataset.lang === lang || (showAll && btn.dataset.lang === "all");
+          btn.setAttribute("aria-pressed", pressed ? "true" : "false");
+        });
+
+        // Optional: you can handle empty state here
+        // document.body.classList.toggle('no-results', visibleCount === 0);
+      }
+
+      filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          // Toggle active class
+          filterButtons.forEach(btn => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          // Update filter state (use the correct key: lang)
+          activeFilters.lang = (button.dataset.lang || "").toLowerCase();
+
+          // Apply filters
+          applyFilters();
+        });
+      });
+
+      // Initial render
+      applyFilters();
+    });
+
+  </script>
 
 </body>
 </html>
