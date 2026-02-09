@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="w0_mdmKYw6Avwpi4JPDpww1SSrm9Qt8r36e8HmcKhTg" />
-<title>Language In Progress | A Learning Log</title>
+<title>Language In Progress</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +25,7 @@
 
       <h2>Newest Logs</h2>
 
-      <div class='filters'>
-        <span>Filter by language:</span>
+      <div class='log-filters'>
         <button class='active lang-all' data-lang='all'>All</button>
         <button class='lang-gen' data-lang='gen'>General</button>
         <button class='lang-spa' data-lang='spa'>Spanish</button>
@@ -52,6 +50,26 @@
 
     </section>
 
+    <section class='resources-container'>
+
+      <h2>Resources</h2>
+
+      <div class='resource-filters'>
+        <button class='active lang-all' data-res='all'>All</button>
+        <button class='lang-gen' data-res='gen'>General</button>
+        <button class='lang-spa' data-res='spa'>Spanish</button>
+        <button class='lang-jap' data-res='jap'>Japanese</button>
+        <button class='lang-rus' data-res='rus'>Russian</button>
+      </div>
+
+      <div class='resource' data-res='rus'>
+        <h3><a href='https://youtube.com/playlist?list=PLyeD0S2WQHeyUH-1eL2h3ZccHtCcqDxK9&si=gYOBxgq88fXeNB-Q' target='_blank'>Russian Music Playlist</a></h3>
+        <time datetime='2026-02-09'>Updated February 9, 2026</time>
+        <span class='lang-label lang-rus'>Russian</span>
+      </div>
+
+    </section>
+
   </div>
 
   <script>
@@ -59,7 +77,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       let activeFilters = { lang: "all" };
 
-      const filterButtons = Array.from(document.querySelectorAll(".filters button"));
+      const filterButtons = Array.from(document.querySelectorAll(".log-filters button"));
       const cards = Array.from(document.querySelectorAll(".log-card"));
 
       function applyFilters() {
@@ -103,6 +121,66 @@
       // Initial render
       applyFilters();
     });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize filtering for each resource filter block on the page
+    document.querySelectorAll('.resource-filters').forEach(setupResourceFilter);
+  
+    function setupResourceFilter(filterBlock) {
+      // Scope items to the same section/container as the filter block
+      const section = filterBlock.closest('section') || document;
+      const buttons = Array.from(filterBlock.querySelectorAll('button'));
+      const items = Array.from(section.querySelectorAll('.resource'));
+
+      // Determine initial active from the .active button or default to 'all'
+      let activeValue = (
+        buttons.find(b => b.classList.contains('active'))?.dataset.res ||
+        buttons.find(b => b.classList.contains('active'))?.dataset.filter ||
+        'all'
+      ).toLowerCase();
+
+      function getButtonValue(btn) {
+        // Prefer data-res, fallback to data-filter
+        const val = (btn.dataset.res || btn.dataset.filter || '').toLowerCase().trim();
+        return val || 'all';
+      }
+
+      function applyFilters() {
+        const showAll = !activeValue || activeValue === 'all';
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          const itemRes = (item.dataset.res || '').toLowerCase().trim();
+          const show = showAll || itemRes === activeValue;
+
+          // Toggle hidden class
+          item.classList.toggle('hidden', !show);
+          if (show) visibleCount++;
+        });
+
+        // Update button states (visual + accessibility)
+        buttons.forEach(btn => {
+          const isActive = getButtonValue(btn) === activeValue || (showAll && getButtonValue(btn) === 'all');
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        // Optional: section-level empty state
+        // section.classList.toggle('no-resource-results', visibleCount === 0);
+      }
+
+      // Bind events
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeValue = getButtonValue(btn);
+          applyFilters();
+        });
+      });
+
+      // Initial render
+      applyFilters();
+    }
+  });
 
   </script>
 
