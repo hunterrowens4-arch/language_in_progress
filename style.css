@@ -41,7 +41,7 @@ button {
 }
 
 .excerpt {
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem;
 }
 
 header {
@@ -103,7 +103,7 @@ h3 {
   color: var(--jap-red-secondary);
 }
 
-.lang-label {
+.lang-label, .res-label {
   margin: 0.5rem;
   padding: 0 0.5rem;
 }
