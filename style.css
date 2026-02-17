@@ -204,6 +204,8 @@ h3 {
   align-items: flex-start;
   display: flex;
   justify-content: space-around;
+  margin: auto;
+  max-width: 90%;
 }
 
 @media (max-width: 600px) {
