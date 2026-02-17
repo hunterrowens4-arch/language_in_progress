@@ -44,11 +44,27 @@ button {
   margin: 0 0 0.5rem;
 }
 
+.flag-icon {
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--rus-blue-secondary);
+  max-width: 50%;
+}
+
+.head-text {
+  max-width: 36%;
+}
+
 header {
+  display: flex;
+  justify-content: space-around;
   line-height: 2;
-  margin: 0 auto 3rem;
-  max-width: 35%;
+  margin: 1.5rem auto 3rem;
+  max-width: 75%;
   text-align: center;
+}
+
+header span {
+  display: block;
 }
 
 .home-button {
@@ -62,19 +78,22 @@ h1, h2, h3 {
 
 h1 {
   font-size: 2rem;
-  line-height: 3;
+  margin: 0 0 1.5rem;
   text-align: center;
 }
 
 h2 {
   display: block;
   font-size: 1.75rem;
-  padding: 0 0 0 1rem;
   text-align: center;
 }
 
 h3 {
   font-size: 1.25rem;
+}
+
+.icon-container {
+  display: flex;
 }
 
 .inlog-meta {
@@ -212,6 +231,38 @@ p, span {
   font-size: 0.875rem;
 }
 
+.primary-lang {
+  background-color: var(--card-color);
+  border: solid 2px var(--secondary-font-color);
+  border-radius: 20px;
+  box-shadow: 0 0 27px rgba(59,130,246,0.5);
+  height: 100%;
+  margin: auto 0;
+  max-width: 19%;
+  overflow: hidden;
+}
+
+.primary-lang h2 {
+  background: var(--background-color);
+  border-bottom: 2px solid var(--secondary-font-color);
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0 0.75rem;
+}
+
+.primary-lang span, .tl-list span {
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.primary-text {
+  background: var(--background-color);
+  border-top: 2px solid var(--secondary-font-color);
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0;
+}
+
 .resource {
   text-align: center;
 }
@@ -223,4 +274,59 @@ p, span {
   box-shadow: 0 0 27px rgba(59,130,246,0.5);
   overflow: hidden;
   width: 30%;
+}
+
+.tl-container {
+  border: 2px solid var(--secondary-font-color);
+  border-radius: 20px;
+  margin: auto 0;
+  max-width: 19%;
+  padding: 0 0 1.5rem;
+}
+
+.tl-container h2 {
+  border-bottom: 2px solid var(--secondary-font-color);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.5rem 0 0.5rem;
+}
+
+#tl-jap {
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.tl-lang {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+}
+
+.tl-cefr-long {
+  width: 45%;
+}
+
+.tl-list {
+  background-color: var(--card-color);
+  border-bottom: 2px solid var(--secondary-font-color);
+  display: block;
+}
+
+.tl-icon {
+  aspect-ratio: 3 / 2;
+  border-radius: 10px;
+  max-width: 25%;
+}
+
+#tl-icon-jap {
+  box-shadow: 0 0 10px var(--jap-red-secondary);
+}
+
+#tl-icon-rus {
+  box-shadow: 0 0 10px var(--rus-blue-secondary);
+}
+
+#tl-icon-spa {
+  box-shadow: 0 0 10px var(--spa-yellow-secondary);
 }
