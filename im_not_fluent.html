@@ -8,20 +8,66 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link rel='stylesheet' type='text/css' href='style.css'>
+<link rel='stylesheet' type='text/css' href='style.css'
 
 </head>
 
 <body>
 
-  <h1>Language in Progress</h1>
+  <header>
 
-  <a href='index.html'><button class='home-button'>Return to Home Page</button></a>
+  <!-- start primary TL box -->
+    <div class='primary-lang'>
+      <h2>Primary Target Language</h2>
+      <img class='flag-icon' src='https://www.youngpioneertours.com/wp-content/uploads/2020/03/Russian-Flag-600x375.jpg'>
 
-  <section class='log-title'>
-    <h2>I'm Not Fluent - I'm Just Logging What Clicks</h2>
-    <time class='inlog-meta' datetime='2026-01-29'>January 29, 2026</time>
-  </section>
+      <div class='primary-text'>
+
+        <span>Русский</span>
+
+        <span class='cefr' id='primary'>A1 | Beginner</span>
+      </div>
+    </div>
+
+  <!-- start header text -->
+    <div class='head-text'>
+      <h1>Language in Progress</h1>
+
+      <a href='index.html'><button class='home-button'>Return to Home Page</button></a>
+
+      <section class='log-title'>
+        <h2>I'm Not Fluent - I'm Just Logging What Clicks</h2>
+        <time class='inlog-meta' datetime='2026-01-29'>January 29, 2026</time>
+      </section>
+    </div>
+
+  <!-- start TL list -->
+    <section class='tl-container'>
+      <h2>Target Languages</h2>
+
+      <div class='tl-list'>
+
+        <div class='tl-lang' id='tl-spa'>
+          <img class='tl-icon' id='tl-icon-spa' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png'>
+          <span class='tl-cefr-short'>B1</span>
+          <span class='tl-cefr-long'>Intermediate</span>
+        </div>
+
+        <div class='tl-lang' id='tl-jap'>
+          <img class='tl-icon' id='tl-icon-jap' src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png'>
+          <span class='tl-cefr-short'>A2</span>
+          <span class='tl-cefr-long'>Elementary</span>
+        </div>
+
+        <div class='tl-lang' id='tl-rus'>
+          <img class='tl-icon' id='tl-icon-rus' src='https://www.youngpioneertours.com/wp-content/uploads/2020/03/Russian-Flag-600x375.jpg'>
+          <span class='tl-cefr-short'>A1</span>
+          <span class='tl-cefr-long'>Beginner</span>
+        </div>
+      </div>
+    </section>
+
+  </header>
 
   <article class='log'>
 
