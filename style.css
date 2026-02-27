@@ -230,8 +230,8 @@ nav {
   display: flex;
   justify-content: space-evenly;
   margin: 2rem auto 3.6rem;
-  max-width: 100%;
-  padding: 1rem 0;
+  max-width: 26rem;
+  padding: 1rem 40%;
   position: sticky;
   text-align: center;
   top: 0;
