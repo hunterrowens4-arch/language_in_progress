@@ -256,6 +256,10 @@ p, span {
   text-align: left;
 }
 
+.playlist-container {
+  margin: 0 0 2rem;
+}
+
 .playlist-container h2 {
   margin: 0.75rem 0 0.25rem;
 }
