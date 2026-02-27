@@ -16,8 +16,8 @@
 
   <header>
 
-    <!-- dummy spacer for formatting purposes -->
-    <section class='tl-container' id='dummy'></section>
+  <!-- dummy spacer for formatting purposes -->
+    <section id='dummy'></section>
 
     <h1 id='top'>Language in Progress</h1>
 
@@ -53,7 +53,11 @@
 
   <div class='video-wrapper'>
     <iframe
-      src='https://www.youtube.com/playlist?list=PLPoHZyCNJhSTC_k-n5IQiImBnWTc7DNlD'
+      src="https://www.youtube.com/embed/videoseries?si=f7M6-i0BFV0ndtPc&amp;list=PLPoHZyCNJhSTC_k-n5IQiImBnWTc7DNlD"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
   </div>
@@ -442,118 +446,6 @@
 
     </section>
   </div>
-
-  <script>
-
-    document.addEventListener("DOMContentLoaded", () => {
-      let activeFilters = { lang: "all" };
-
-      const filterButtons = Array.from(document.querySelectorAll(".log-filters button"));
-      const cards = Array.from(document.querySelectorAll(".log-card"));
-
-      function applyFilters() {
-        const { lang } = activeFilters;
-        const showAll = !lang || lang === "all";
-
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-          const cardLang = (card.dataset.lang || "").toLowerCase();
-          const show = showAll || cardLang === lang;
-
-          card.classList.toggle("hidden", !show);
-          if (show) visibleCount++;
-        });
-
-        // Update aria-pressed for accessibility
-        filterButtons.forEach(btn => {
-          const pressed = btn.dataset.lang === lang || (showAll && btn.dataset.lang === "all");
-          btn.setAttribute("aria-pressed", pressed ? "true" : "false");
-        });
-
-        // Optional: you can handle empty state here
-        // document.body.classList.toggle('no-results', visibleCount === 0);
-      }
-
-      filterButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          // Toggle active class
-          filterButtons.forEach(btn => btn.classList.remove("active"));
-          button.classList.add("active");
-
-          // Update filter state (use the correct key: lang)
-          activeFilters.lang = (button.dataset.lang || "").toLowerCase();
-
-          // Apply filters
-          applyFilters();
-        });
-      });
-
-      // Initial render
-      applyFilters();
-    });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize filtering for each resource filter block on the page
-    document.querySelectorAll('.resource-filters').forEach(setupResourceFilter);
-  
-    function setupResourceFilter(filterBlock) {
-      // Scope items to the same section/container as the filter block
-      const section = filterBlock.closest('section') || document;
-      const buttons = Array.from(filterBlock.querySelectorAll('button'));
-      const items = Array.from(section.querySelectorAll('.resource'));
-
-      // Determine initial active from the .active button or default to 'all'
-      let activeValue = (
-        buttons.find(b => b.classList.contains('active'))?.dataset.res ||
-        buttons.find(b => b.classList.contains('active'))?.dataset.filter ||
-        'all'
-      ).toLowerCase();
-
-      function getButtonValue(btn) {
-        // Prefer data-res, fallback to data-filter
-        const val = (btn.dataset.res || btn.dataset.filter || '').toLowerCase().trim();
-        return val || 'all';
-      }
-
-      function applyFilters() {
-        const showAll = !activeValue || activeValue === 'all';
-        let visibleCount = 0;
-
-        items.forEach(item => {
-          const itemRes = (item.dataset.res || '').toLowerCase().trim();
-          const show = showAll || itemRes === activeValue;
-
-          // Toggle hidden class
-          item.classList.toggle('hidden', !show);
-          if (show) visibleCount++;
-        });
-
-        // Update button states (visual + accessibility)
-        buttons.forEach(btn => {
-          const isActive = getButtonValue(btn) === activeValue || (showAll && getButtonValue(btn) === 'all');
-          btn.classList.toggle('active', isActive);
-          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
-
-        // Optional: section-level empty state
-        // section.classList.toggle('no-resource-results', visibleCount === 0);
-      }
-
-      // Bind events
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          activeValue = getButtonValue(btn);
-          applyFilters();
-        });
-      });
-
-      // Initial render
-      applyFilters();
-    }
-  });
-
-  </script>
 
 </body>
 </html>
